@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="intro"> This is your singing curve.
+<br> This is the plot of how bad you sang!Go ahead and share this app with your friends and have fun!<br>
+	<br> Your score is {{score}}!<br>
+<img src=/{{image_url}}>
+</div>
+
+{% endblock %}

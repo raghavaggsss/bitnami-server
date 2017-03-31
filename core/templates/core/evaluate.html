@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div class="intro">Step-3: Audio wil play in 5 seconds. Get ready!!!
+   <br><br>
+    <audio controls onloadeddata="var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, 5000)">
+        <source src= /{{karaoke_url}} type="audio/wav">
+    </audio>
+    <br><br>
+    now upload your recording!
+    </div>
+    <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div id = "uploadpart">
+    <label class="fileUpload btn btn-primary" id = "start1">
+    <input type="file" name="myfile1">
+    Select File ..
+</label>
+
+    <button type="submit" class="fileUpload btn btn-primary">UPLOAD</button>
+
+    </div>
+
+
+  </form>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+      
+      <div class="intro">Enter your email-id and song name in the fields provided below and click submit
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div id = "uploadpart">
+    
+<input type="email" name="email_check" style="background-color: black;" value="Email Id">
+<input type="text" name="song_name_check" style="background-color: black;" value="Song Name">
+    
+    <button type="submit" class="fileUpload btn btn-primary">SUBMIT</button>
+    
+    </div>
+    </div>
+    
+  </form>
+      
+{% if invalid_user %}
+    <div class="intro">Sorry, we have receieved no song with the above name and email id. pls upload your song. heres the <a href="{% url 'simple_upload' %}">link</a></div>
+{% endif %}    
+
+{% if song_not_processed %}
+    <div class="intro">Please wait until the song is processed and come back once you receive the email</div>
+{% endif %}    
+    
+{% if song_processed %}
+    <div class = "btn btn-primary" onclick = "window.location.href = '{% url 'record' %}';" id = "start">
+        Start Singing
+      </div>
+{% endif %}
+
+      
+{% endblock %}

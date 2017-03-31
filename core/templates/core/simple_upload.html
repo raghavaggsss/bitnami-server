@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="intro">Step1 : Please upload the file in wav format.Since the algorithm for making karaoke is quite heavy, be patient<!doctype html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+  </head>
+  <body>
+  
+  </body>
+  </html></div>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div id = "uploadpart">
+    <label class="fileUpload btn btn-primary" id = "start1">
+    <input type="file" name="myfile"> 
+    Select File ..
+</label>
+    <input type="email" name="to_email" style="background-color: black;">
+    <button type="submit" class="fileUpload btn btn-primary">UPLOAD</button>
+    
+    </div>
+    
+    
+  </form>
+
+  {%if uploaded_file_url %}
+<div class="intro">You have uploaded the song {{filename}}. Karaoke will be sent to the email id {{to_email_id}} in 5 hrs. You can upload another song or close the window. Thanks
+	{% endif %}
+  
+{% endblock %}
