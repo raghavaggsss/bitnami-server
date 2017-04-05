@@ -4,10 +4,28 @@
 
 {% block content %}
 
-<div class="intro"> This is your singing curve.
-<br> This is the plot of how bad you sang!Go ahead and share this app with your friends and have fun!<br>
-	<br> Your score is {{score}}!<br>
+<div style="position: relative;">
+        <div id="upload_icon" style="width: 20%; color: grey;
+        height: 300px; position:absolute; left:3%;"><img src='/static/core/images/upload.png' height="150" width="195" style="opacity:0.5;">
+        <br><div style="margin-left: 30%;"><div style="font-size: 20px; font-weight:bold">UPLOAD</div><br>
+        Upload a song you want to master and we will send you its karaoke link via email.
+        </div></div>
+        
+        <div id="song_icon" style="width: 20%; color:grey;
+        height: 300px; position:absolute; left:23%"><img src='/static/core/images/sing.png' height="150" width="195" style="opacity:0.5;">
+        <br><div style="margin-left: 30%"><div style="font-size: 20px; font-weight:bold;">SING</div><br>Sing while the karaoke plays in the background.
+        </div></div>
+        <div id="graph_icon" style="width: 20%; color:grey;
+        height: 300px; position:absolute; left:43%"><img src='/static/core/images/graphicon.png' height="150" width="195">
+        <br><div style="margin-left: 30%"><div style="font-size: 20px; font-weight:bold;">EVALUATE</div><br>We analyze your recording and plot$
+        </div>
+        </div>
+        </div>
+
+
+ This is your singing curve.
+<br><div id= "score" style="margin-top: 20%"> This graph plots pitch of the original song versus the pitch of the song you sang!<br>
+	<br> Your score is {{score}}! <br><br><br></div>		
 <img src=/{{image_url}}>
-</div>
 
 {% endblock %}

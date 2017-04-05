@@ -25,7 +25,7 @@ SECRET_KEY = '3@ii)7#z#9l5g+^tqaj&uqck&g7p2_ol1s61d!=)rj2i*h(1xn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['13.71.112.139']
+ALLOWED_HOSTS = ['13.71.125.163']
 
 
 # Application definition
@@ -146,4 +146,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-FILE_UPLOAD_MAX_MEMORY_SIZE = 7000000
+FILE_UPLOAD_PERMISSIONS = 0644

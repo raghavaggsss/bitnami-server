@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div style="position: relative;">
+        <div id="upload_icon" style="width: 20%; color:grey;
+        height: 300px; position:absolute; left:5%;"><img src='/static/core/images/upload.png' height="150" width="195" style="opacity:0.5;">
+        <br><div style="margin-left: 30%;"><div style="font-size: 20px; font-weight:bold">UPLOAD</div><br>
+        Upload a song you want to master and we will send you its karaoke link via email.</div>
+        </div>
+        <div id="song_icon" style="width: 20%;;
+        height: 300px; position:absolute; left:25%"><img src='/static/core/images/sing.png' height="150" width="195">
+        <br><div style="margin-left: 30%"><div style="font-size: 20px; font-weight:bold;">SING</div><br>Sing while the karaoke plays in the background and we will re$
+        </div>
+        <div id="graph_icon" style="width: 20%; color:grey;
+        height: 300px; position:absolute; left:45%"><img src='/static/core/images/graphicon.png' height="150" width="195" style="opacity:0.5;">
+        <br><div style="margin-left: 30%"><div style="font-size: 20px; font-weight:bold;">EVALUATE</div><br>We analyze your recording and plot it against the origina$
+        </div>
+        </div>
+        </div>
+
+      
+      <div "margin-left:>Enter your email-id and song name in the fields provided below and click submit
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div id = "uploadpart">
+    
+<input type="email" name="email_check" style="background-color: black;" value="Email Id">
+<input type="text" name="song_name_check" style="background-color: black;" value="Song Name">
+    
+    <button type="submit" class="fileUpload btn btn-primary">SUBMIT</button>
+    
+    </div>
+    </div>
+    
+  </form>
+      
+{% if invalid_user %}
+    <div class="intro">Sorry, we have receieved no song with the above name and email id. pls upload your song. heres the <a href="{% url 'simple_upload' %}">link</a></div>
+{% endif %}    
+
+{% if song_not_processed %}
+    <div class="intro">Please wait until the song is processed and come back once you receive the email</div>
+{% endif %}    
+    
+{% if song_processed %}
+    <div class = "btn btn-primary" onclick = "window.location.href = '{% url 'record' %}';" id = "start">
+        Start Singing
+      </div>
+{% endif %}
+
+      
+{% endblock %}

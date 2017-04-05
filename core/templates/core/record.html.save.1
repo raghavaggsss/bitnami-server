@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+    
+        <div id="upload_icon" style="width: 20%;
+        height: 300px; position:absolute; left:5%;"><img src='/static/core/images/upload.png' height="150" width="195">
+        <br><div style="margin-left: 30%;"><div style="font-size: 20px; font-weight:bold">UPLOAD</div><br>
+        <div style="margin-left:-12%;">
+        <UL>
+        <LI>.mp3 or .wav format only
+        <LI>stereo audio only
+        </div>
+        </p>
+        </div>
+        </div>
+        </div>
+        <div id="song_icon" style="width: 20%; color:grey;
+        height: 300px; position:absolute; left:25%"><img src='/static/core/images/sing.png' height="150" width="195" style="opacity:0.5;">
+        <br><div style="margin-left: 30%"><div style="font-size: 20px; font-weight:bold;">SING</div><br>Sing while the karaoke plays in the back$
+        </div>
+        <div id="graph_icon" style="width: 20%; color:grey;
+        height: 300px; position:absolute; left:45%"><img src='/static/core/images/graphicon.png' height="150" width="195" style="opacity:0.5;">
+        <br><div style="margin-left: 30%"><div style="font-size: 20px; font-weight:bold;">EVALUATE</div><br>We analyze your recording and plot i$
+        </div>
+        </div>
+        </div>
+
+   <div class="intro">Step2 : Here is your Karaoke! Be prepared for the recording!
+   <br><br>
+   <audio name="audio" id= {{recording_name}} controls onloadeddata="var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, 5000)" onplay="myfunc()" onended="myfunc1()">
+        <source src= /{{karaoke_url}} type="audio/wav" >
+   </audio>
+   </div>
+   <script>
+        function myfunc() {
+            document.getElementById('recorder').click();
+        }
+        function myfunc1() {
+            document.getElementById('stopper').click();
+        }
+
+        
+    </script>
+    <div style="margin-left: 15%; margin-top: 2%;">
+    <button id="recorder" class = "btn btn-primary" onclick="startRecording(this);">record</button>
+  <button id="stopper" class = "btn btn-primary" onclick="stopRecording(this);" disabled>stop</button>
+    
+    <ul id="recordingslist"></ul>
+    
+    <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div id = "uploadpart">
+    <label class="fileUpload btn btn-primary" id = "start1">
+    <input type="file" name="myfile1">
+    Select File ..
+</label>
+
+    <button type="submit" class="fileUpload btn btn-primary">UPLOAD</button>
+
+    </div>
+
+
+  </form>
+
+
+      <script>
+  var audio_context;
+  var recorder;
+
+  function startUserMedia(stream) {
+    var input = audio_context.createMediaStreamSource(stream);
+
+    
+    
+    recorder = new Recorder(input);
+    
+  }
+
+  function startRecording(button) {
+    recorder && recorder.record();
+    button.disabled = true;
+    button.nextElementSibling.disabled = false;
+    
+  }
+
+  function stopRecording(button) {
+    recorder && recorder.stop();
+    button.disabled = true;
+    button.previousElementSibling.disabled = false;
+    
+  
+
+
+// function getCookie(name) {
+//         var cookieValue = null;
+//         if (document.cookie && document.cookie != '') {
+//             var cookies = document.cookie.split(';');
+//             for (var i = 0; i < cookies.length; i++) {
+//                 var cookie = jQuery.trim(cookies[i]);
+                
+//                 if (cookie.substring(0, name.length + 1) == (name + '=')) {
+//                     cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+//                     break;
+//                 }
+//             }
+//         }
+//         return cookieValue;}
+        
+//     function upload(blob){
+//         var csrftoken = getCookie('csrftoken');
+ 
+//         var xhr = new XMLHttpRequest();
+//         xhr.open('POST', 'songtrain-3/SongTrain1/media/recordings', true);
+//         xhr.setRequestHeader("X-CSRFToken", csrftoken);
+//         xhr.setRequestHeader("MyCustomHeader", "abcd");
+ 
+//         xhr.upload.onloadend = function() {
+//             alert('Upload complete');
+//         };
+        
+//         xhr.send(blob);    }
+
+//     recorder && recorder.exportWAV(function(blob){
+// var button = document.createElement('button');
+//             var t = document.createTextNode("Upload?");
+//             button.id = 'button';
+//             button.appendChild(t);
+//             button.onclick = function() {
+//                 upload(blob.detail);  
+//             };
+      
+//         });        
+
+//     recorder && recorder.exportWAV(function(blob) {
+
+//       var url = (window.URL || window.webkitURL).createObjectURL(blob);
+//       console.log(url);
+
+//       var data = new FormData();
+//       data.append('file', blob);
+
+//       $.ajax({
+//         url :  "{% static 'core/js/record_render.php' %}",
+//         type: 'POST',
+//         data: data,
+//         contentType: false,
+//         processData: false,
+        
+        
+//       });
+// }); 
+    createDownloadLink();
+    recorder && recorder.clear();
+  }  
+
+
+  function createDownloadLink() {
+    recorder && recorder.exportWAV(function(blob) {
+      var url = URL.createObjectURL(blob);
+      var li = document.createElement('li');
+      var au = document.createElement('audio');
+      var hf = document.createElement('a');
+      
+      au.controls = true;
+      au.src = url;
+      hf.href = url;
+      var elements = document.getElementsByName('audio');
+      var id = elements[0].getAttribute('id');
+      hf.download = id ;
+      hf.innerHTML = hf.download;
+      li.appendChild(au);
+      li.appendChild(hf);
+      recordingslist.appendChild(li);
+    });
+  }
+
+window.onload = function init() {
+try {
+// webkit shim
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
+navigator.getUserMedia = ( navigator.getUserMedia ||
+navigator.webkitGetUserMedia ||
+navigator.mozGetUserMedia ||
+navigator.msGetUserMedia);
+window.URL = window.URL || window.webkitURL;
+ 
+audio_context = new AudioContext;
+
+
+} catch (e) {
+alert('No web audio support in this browser!');
+}
+ 
+navigator.getUserMedia({audio: true}, startUserMedia, function(e) {
+
+});
+};
+</script>
+<script src="{% static 'core/js/recorder.js' %}"></script>
+ 
+{% endblock %}

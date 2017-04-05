@@ -1,7 +1,5 @@
-def calculate_score(fk,fr,time,length_time):
-	
-	u = max(max(fk,fr))
-	l = min(min(fk,fr))
+def calculate_score(fk,fr,time):
+	length_time = len(time)
 
 	err = 0
 

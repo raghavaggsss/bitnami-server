@@ -4,10 +4,28 @@
 
 {% block content %}
     
+<div style="position: relative;">
+        <div id="upload_icon" style="width: 20%; color: grey;
+        height: 300px; position:absolute; left:3%;"><img src='/static/core/images/upload.png' height="150" width="195" style="opacity:0.5;">
+        <br><div style="margin-left: 30%;"><div style="font-size: 20px; font-weight:bold">UPLOAD</div><br>
+        Upload a song you want to master and we will send you its karaoke link via email.
+        </div>
+        </div>
+        
+        <div id="song_icon" style="width: 20%; color:grey;
+        height: 300px; position:absolute; left:23%"><img src='/static/core/images/sing.png' height="150" width="195"">
+        <br><div style="margin-left: 30%"><div style="font-size: 20px; font-weight:bold;">SING</div><br>Sing while the karaoke plays in the background and we will record your singing for evaluation.
+        </div></div>
+        <div id="graph_icon" style="width: 20%; color:grey;
+        height: 300px; position:absolute; left:43%"><img src='/static/core/images/graphicon.png' height="150" width="195" style="opacity:0.5;">
+        <br><div style="margin-left: 30%"><div style="font-size: 20px; font-weight:bold;">EVALUATE</div><br>We analyze your recording and plot it against the original track, and generate a score. Compare your singing with others using our global leaderboard!
+        </div>
+        </div>
+        </div>
 
-   <div class="intro">Step2 : Here is your Karaoke! Be prepared for the recording!
+   <div style="margin-top: 25%;">Step2 : Here is your Karaoke! Be prepared for the recording!
    <br><br>
-   <audio controls onloadeddata="var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, 5000)" onplay="myfunc()" onended="myfunc1()">
+   <audio name="audio" id= {{recording_name}} controls onloadeddata="var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, 5000)" onplay="myfunc()" onended="myfunc1()">
         <source src= /{{karaoke_url}} type="audio/wav" >
    </audio>
    </div>
@@ -21,15 +39,27 @@
 
         
     </script>
-    
+    <div style="margin-left: 15%; margin-top: 2%;">
     <button id="recorder" class = "btn btn-primary" onclick="startRecording(this);">record</button>
   <button id="stopper" class = "btn btn-primary" onclick="stopRecording(this);" disabled>stop</button>
     
     <ul id="recordingslist"></ul>
     
-    <div class = "btn btn-primary" onclick = "window.location.href = '{% url 'evaluate' %}';" id = "start">
-        next page
-      </div>
+    <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div id = "uploadpart">
+    <label class="fileUpload btn btn-primary" id = "start1">
+    <input type="file" name="myfile1">
+    Select File ..
+</label>
+
+    <button type="submit" class="fileUpload btn btn-primary">UPLOAD</button>
+
+    </div>
+
+
+  </form>
+
 
       <script>
   var audio_context;
@@ -132,7 +162,9 @@
       au.controls = true;
       au.src = url;
       hf.href = url;
-      hf.download = new Date().toISOString() + '.wav';
+      var elements = document.getElementsByName('audio');
+      var id = elements[0].getAttribute('id');
+      hf.download = id ;
       hf.innerHTML = hf.download;
       li.appendChild(au);
       li.appendChild(hf);

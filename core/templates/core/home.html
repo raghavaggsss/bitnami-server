@@ -3,25 +3,24 @@
 
 {% block content %}
       
-      <div class="intro">Learn to sing your favourite songs using this web app.
-    Upload your song. Get the best in class karaoke. Give us your recording , get your singing graph.
-    </div>
-      
-      <div class = "btn btn-primary" onclick = "window.location.href = '{% url 'simple_upload' %}';" id = "start">
+      <div style="position: relative;">
+        <div id="upload_icon" style="width: 20%;
+	height: 300px; position:absolute; left:5%;"><img src='/static/core/images/upload.png' height="150" width="195">
+        <br><div style="margin-left: 30%;"><div style="font-size: 20px; font-weight:bold">UPLOAD</div><br>
+        Upload a song you want to master and we will send you its karaoke link via email.  </div>
+        </div>
+        <div id="song_icon" style="width: 20%;
+	height: 300px; position:absolute; left:25%"><img src='/static/core/images/sing.png' height="150" width="195">
+        <br><div style="margin-left: 30%"><div style="font-size: 20px; font-weight:bold;">SING</div><br>
+        Sing while the karaoke plays in the background and we will record your singing for evaluation.</div>
+        </div>
+        <div id="graph_icon" style="width: 20%;
+	height: 300px; position:absolute; left:45%"><img src='/static/core/images/graphicon.png' height="150" width="195">
+        <br><div style="margin-left: 30%"><div style="font-size: 20px; font-weight:bold;">EVALUATE</div><br>We analyze your recording and plot it against the original track, and generate a score. Compare your singing with others using our global leaderboard!
+        </div>
+        </div>
+        </div>
+      <div style="margin-top: 27%; margin-left: 28%" class = "btn btn-primary" onclick = "window.location.href = '{% url 'simple_upload' %}';" id = "start">
         Get Started!
-      </div>
-      
-      
-
-      
-      
-  <!--<p>Uploaded files:</p>
-  <ul>
-    {% for obj in documents %}
-      <li>
-        <a href="{{ obj.document.url }}">{{ obj.document.name }}</a>
-        <small>(Uploaded at: {{ obj.uploaded_at }})</small>
-      </li>
-    {% endfor %}
-  </ul> -->
+      </div>    
 {% endblock %} 

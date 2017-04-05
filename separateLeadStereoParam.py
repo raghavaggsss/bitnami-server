@@ -28,7 +28,7 @@ import scipy.io.wavfile as wav
 import os
 
 from tracking import viterbiTrackingArray
-
+import sqlite3
 # SOME USEFUL, INSTRUMENTAL, FUNCTIONS
 
 def db(val):
@@ -1000,6 +1000,17 @@ def main(inputAudioFile,song_name,to_email_id):
     mestL = np.array(np.round(mestL*scaleData), dtype=dataType)
     wav.write(outputFileName, fs, \
               np.array([mestR,mestL]).T)
+    ###########################################
+    # DATABASE UPDATE HERE#####################
+    #conn = sqlite3.connect('db.sqlite3')
+    sql_dir = os.path.join(BASE_DIR, 'Project/db.sqlite3')
+    conn = sqlite3.connect(sql_dir)
+    c = conn.cursor()
+    email_song = (to_email_id + song_name,)
+    c.execute('UPDATE core_songDB SET karaoke_created = 1 WHERE full_name = ?', email_song)
+    conn.commit()
+    conn.close() 
+
 
     if displayEvolution:
         plt.close('all')

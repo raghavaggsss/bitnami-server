@@ -6,4 +6,5 @@ class songDB(models.Model):
     hash_code = models.CharField(max_length = 34)
     score = models.IntegerField()
     email_id = models.EmailField()
-    karaoke_created = models.BooleanField(default=False)
+    karaoke_created = models.IntegerField(default=0)
+    email_sent = models.IntegerField(default=0)

@@ -1,0 +1,15 @@
+from separateLeadStereoParam import main as separate
+import sqlite3
+
+while(1):
+	conn = sqlite3.connect('db.sqlite3')
+	c = conn.cursor()
+	elements = c.execute('SELECT * FROM core_songDB
+	for i in range(0,numberofrows):
+		if (karaoke_created is 0 )
+			separate
+			a = list of similar hashes & email_sent is 0
+			for hashes in similiar hashes:
+				if(file_name != new_name):
+					copy file
+				send email

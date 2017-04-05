@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+<div style="position: relative;">
+        <div id="upload_icon" style="width: 20%;
+        height: 300px; position:absolute; left:5%;"><img src='/static/core/images/upload.png' height="150" width="195">
+        <br><div style="margin-left: 30%;"><div style="font-size: 20px; font-weight:bold">UPLOAD</div><br>
+        Upload a song you want to master and we will send you its karaoke link via email.</div>
+        </div>
+        <div id="song_icon" style="width: 20%; color:grey;
+        height: 300px; position:absolute; left:25%"><img src='/static/core/images/sing.png' height="150" width="195" style="opacity:0.5;">
+        <br><div style="margin-left: 30%"><div style="font-size: 20px; font-weight:bold;">SING</div><br>Sing while the karaoke plays in the background and we will record your singing for evaluation.</div>
+        </div>
+        <div id="graph_icon" style="width: 20%; color:grey;
+        height: 300px; position:absolute; left:45%"><img src='/static/core/images/graphicon.png' height="150" width="195" style="opacity:0.5;">
+        <br><div style="margin-left: 30%"><div style="font-size: 20px; font-weight:bold;">EVALUATE</div><br>We analyze your recording and plot i$
+        </div>
+        </div>
+        </div>
+        </div>
+<div style="margin-top: 27%; margin-left: 25%">	
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<!-- <label class="fileUpload btn btn-primary" id = "start1"> -->
+    <input type="file" name="myfile"> 
+<label class="fileUpload btn btn-primary" id = "start1">
+    <input type="file" name="myfile"> 
+    Select File ..
+</label>    
+	<br>
+   Email:  <input type="email" name="to_email" style="background-color: white;">
+    <button type="submit" class="fileUpload btn btn-primary">UPLOAD</button>
+     </form>
+</div>
+  {%if uploaded_file_url %}
+<div style="margin-left: 30%;" >You have uploaded the song {{filename}}.<br> Karaoke will be sent to the email id {{to_email_id}} in 5 hrs.<br> You can upload another song or close the window.</div>
+	{% endif %}
+  
+{% endblock %}

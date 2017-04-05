@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div style="position: relative;">
+        <div id="upload_icon" style="width: 20%; color:grey;
+        height: 300px; position:absolute; left:5%;"><img src='/static/core/images/upload.png' height="150" width="195" style="opacity:0.5;">
+        <br><div style="margin-left: 30%;"><div style="font-size: 20px; font-weight:bold">UPLOAD</div><br>
+        Upload a song you want to master and we will send you its karaoke link via email.</div>
+        </div>
+        <div id="song_icon" style="width: 20%;
+        height: 300px; position:absolute; left:25%"><img src='/static/core/images/sing.png' height="150" width="195">
+        <br><div style="margin-left: 30%"><div style="font-size: 20px; font-weight:bold;">SING</div><br>Sing while the karaoke plays in the background and we will record your singing for evaluation.</div>
+        </div>
+        <div id="graph_icon" style="width: 20%; color:grey;
+        height: 300px; position:absolute; left:45%"><img src='/static/core/images/graphicon.png' height="150" width="195" style="opacity:0.5;">
+        <br><div style="margin-left: 30%"><div style="font-size: 20px; font-weight:bold;">EVALUATE</div><br>We analyze your recording and plot it against the original track, and generate a score. Compare your singing with others using our global leaderboard!
+        </div>
+        </div>
+        </div>
+      
+      <div style="margin-top: 25%; margin-left: 30%;">
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div style="margin-top: 38%;">
+    
+<!-- <input type="email" name="email_check" style="background-color: white;" value="Email Id"> -->
+<input type="email" value="Email Id" name="email_check"
+ onblur="if (this.value == '') {this.value = 'Email Id';}"
+ onfocus="if (this.value == 'Email Id') {this.value = '';}" /><BR>
+<!-- <input type="text" name="song_name_check" style="background-color: white;" value="Song Name"> -->
+<input type="text" value="song name" name="song_name_check"
+ onblur="if (this.value == '') {this.value = 'song name';}"
+ onfocus="if (this.value == 'song name') {this.value = '';}" /><BR>
+    
+    <button type="submit" class="fileUpload btn btn-primary">SUBMIT</button>
+    
+    </div>
+    </div>
+    
+  </form>
+      
+{% if invalid_user %}
+    <div style="margin-left: 10%; margin-right: 40%;">Sorry, we haven't receieved any song corresponding to above name and email id. Please upload your song if you haven't yet. Here's the <a href="{% url 'simple_upload' %}">link</a></div>
+{% endif %}    
+
+{% if song_not_processed %}
+    <div style="margin-right: 40%;">Please wait until the song is processed. We will send you and email as soon as your karaoke is generated. Come back once you've received the email</div>
+{% endif %}    
+    
+{% if song_processed %}
+    <div class = "btn btn-primary" onclick = "window.location.href = '{% url 'record' %}';" id = "start" style="margin-left:30% margin-top:-4%;>
+        Start Singing
+      </div>
+{% endif %}
+
+      
+{% endblock %}

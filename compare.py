@@ -5,11 +5,14 @@ from aubio import pitch as p
 import sys
 from scipy.interpolate import spline
 import numpy as np
+import os
 
-def compare(song,recording):
-	# song = sys.argv[1]
-	# recording = sys.argv[2]
-
+def compare(song1,recording1):
+	BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+	path_song = os.path.join(BASE_DIR, 'Project/media/songs/')
+	song = path_song + song1
+	path_recording = os.path.join(BASE_DIR , 'Project/media/recordings/')
+	recording = path_recording + recording1
 	downsample = 1
 	samplerate = 44100 // downsample
 
@@ -52,10 +55,10 @@ def compare(song,recording):
 	    pitch2 += [pitch_2]
 	    total_frames += read1
 	    if (read1 < hop_s or read2 < hop_s): break
-        times_new = np.linspace(times[0],times[-1],50)
-        pitch1_new = spline(time,pitch1,time_new)
+        times_new = np.linspace(times[0],times[-1],100)
+        pitch1_new = spline(times,pitch1,times_new)
 	del pitch1
-        pitch2_new = spline(time,pitch2,time_new)
+        pitch2_new = spline(times,pitch2,times_new)
 	del pitch2
 	del times
 	return times_new, pitch1_new, pitch2_new
