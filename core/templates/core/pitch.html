@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+
+<p>
+			<button onclick="this.innerText = togglePlayback()">use demo audio</button>
+			<button onclick="toggleLiveInput()">use live input</button>
+			<button onclick="toggleOscillator()">use oscillator</button>
+			<!--<button onclick="updatePitch(0);">sample</button>-->
+		</p>
+
+		<div id="detector" class="vague">
+			<div class="pitch"><span id="pitch">--</span>Hz</div>
+			<div class="note"><span id="note">--</span></div>
+			<canvas id="output" width=300 height=42></canvas>
+			<div id="detune"><span id="detune_amt">--</span><span id="flat">cents &#9837;</span><span id="sharp">cents &#9839;</span></div>
+
+		</div>
+
+<p> Rms value sets this and this. (description of rms). Check if default value works or refresh the page
+	and change the rms value. The graph will be generated 5 seconds after you click the button. pl share
+	the audio device too.Enter a value between 1 and 20, inclusive.
+	If you get many peaks, it probably is due to noise. Increasing rms value would help in decresaing noise.
+	<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+	rms: <input type="text" name="rmsValue" value="18">
+	<button type="submit" value="Start Singing">Start Singing</button></p>
+	</form>
+{% if rmsValue %}
+	You have set the rms value <div id="rmsValue"><b>{{rmsValue}}</b></div>.
+{% endif %}
+<div id="chart"></div>
+
+
+
+<!--<audio controls onloadeddata="var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, 5000)">
+<source src="/media/songs/s.wav"  type="audio/wav">
+    </audio> -->
+
+	<div id="vocals"> {{vocals_url}}</div>
+	<div style="margin-top: 27%; margin-left: 28%" class = "btn btn-primary" onclick = "window.location.href = '{% url 'leaderboard' %}';" id = "start">
+        Get Leaderboard
+      </div>  
+
+{% csrf_token %}
+	<section><div id="legend"></div></section>
+<script src="{% static 'core/js/pitch.js' %}"></script>
+<script>
+
+var graph;
+var time_shift;
+var graph_visible_width;
+var pixel_per_second;
+var elem;
+
+function plotgraph() {
+var data = [];
+var data1 = [];
+
+for (var i = 0; i < a.length; i++)
+{
+    data.push({x: time_array[i], y: a[i]});
+
+}
+
+for (var i = 0; i < a1.length; i++)
+{
+    data1.push({x: time_array1[i], y: a1[i]});
+
+}
+
+var data3 = [{x: 0, y : null}, {x: theBuffer.duration, y: null},];
+
+
+
+var tv = 250;
+graph = new Rickshaw.Graph( {
+        element: document.querySelector("#chart"),
+        renderer: 'line',
+        padding: {top: 0.05},
+        width: theBuffer.duration*50,
+        height: 650,
+        max: 1010,
+        series: [{data: data, color: 'steelblue', name: 'karaoke note'}, {data: data1, color: 'gold', name: 'your note'}, {data: data3, name:'Legend'}]
+        /*new Rickshaw.Graph( {
+	element: document.getElementById("chart"),
+	width: 900,
+	height: 500,
+	renderer: 'line',
+	series: new Rickshaw.Series.FixedDuration([{ name: 'one' }], undefined, {
+		timeInterval: tv-240,
+		maxDataPoints: 100, })*/
+
+
+} );
+graph.render();
+    var xAxis = new Rickshaw.Graph.Axis.X({
+  graph: graph,
+  }) ;
+  var yAxis = new Rickshaw.Graph.Axis.Y({
+  graph: graph,
+  }) ;
+  xAxis.render(); yAxis.render();
+/*var iv = setInterval( function() {
+
+	var data = { one: a[i] };
+    i++;
+	var randInt = Math.floor(Math.random()*100);
+
+
+	graph.series.addData(data);
+	graph.render();
+
+}, tv );*/
+	var getLatestData = function() {
+		for (var i = data.length; i < a.length; i++)
+		{
+			data.push({x:time_array[i], y:a[i]});
+		}
+		for (var i = data1.length; i < a1.length; i++)
+		{
+			data1.push({x:time_array1[i], y:a1[i]});
+		}
+		graph.update();
+
+	}
+
+ setInterval( function() {
+	getLatestData();
+
+
+}, 100	);
+ graph_visible_width = window.innerWidth*0.8;
+ elem = document.getElementById('chart');
+ pixel_per_second = elem.scrollWidth/theBuffer.duration;
+ time_shift = graph_visible_width / pixel_per_second / 2 ;
+
+/*var fxnnn = window.setInterval(function() {
+  var elem = document.getElementById('chart');
+  elem.scrollLeft += elem.scrollWidth/theBuffer.duration*2;
+},2000);*/
+var stopID;
+function fxnn() {
+ stopID = window.setInterval(function() {
+  var elem = document.getElementById('chart');
+  elem.scrollLeft += elem.scrollWidth/theBuffer.duration*2;
+},2000);
+//var elem = document.getElementById('chart');
+//var x = elem.scrollWidth/theBuffer.duration*2;
+//elem.animate({scrollLeft: '+=250px'}, 2000, function () {elem.animate({scrollLeft: 0}, 800);});
+
+}
+
+function fxnn1() {
+	window.clearInterval(stopID);
+	//setTimeout(function() {elem.scrollLeft = 0}, 3000);
+	//elem.animate({scrollLeft: '0'}, 80, function() {alert('helo')});
+};
+setTimeout(fxnn,time_shift*1000);
+setTimeout(fxnn1, theBuffer.duration*1000);
+
+	//var smoother = new Rickshaw.Graph.Smoother( {
+	//graph: graph,
+	//element: document.querySelector('#smoother')
+//} );
+
+var hoverDetail = new Rickshaw.Graph.HoverDetail( {
+	graph: graph,
+
+
+} );
+
+var legend = new Rickshaw.Graph.Legend( {
+	graph: graph,
+	element: document.getElementById('legend')});
+
+}
+</script>
+
+{% endblock %}

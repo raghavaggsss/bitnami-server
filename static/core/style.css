@@ -64,3 +64,10 @@ input[type="file"] {
 #uploadpart {
 	margin-top: 5%;
 }
+
+
+#chart {
+	margin-left: 10%;
+	margin-right: 10%;
+	overflow-x: scroll;
+}

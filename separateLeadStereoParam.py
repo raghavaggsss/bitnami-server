@@ -487,7 +487,7 @@ def main(inputAudioFile,song_name,to_email_id):
     #Number of iterations
     parser.add_option("--nb-iterations", dest="nbiter",
                       help="number of iterations", type="int",
-                      default=0)
+                      default=15)
     parser.add_option("--window-size", dest="windowSize", type="float",
                       default=0.04644,help="size of analysis windows, in s.")
     parser.add_option("--Fourier-size", dest="fourierSize", type="int",
@@ -974,14 +974,14 @@ def main(inputAudioFile,song_name,to_email_id):
     
     vestL = istft(hatVR, hopsize=hopsize, nfft=NFT,
                   window=sinebell(windowSizeInSamples)) / 4.0
-    
-    outputFileName = options.voc_output_file[:-4] + '_VUIMM.wav'
+
+    outputFileName = os.path.join(BASE_DIR, 'Project/media/vocals/' + to_email_id + song_name)
     # scikits.audiolab.wavwrite(np.array([vestR,vestL]).T, outputFileName, fs)
     
     vestR = np.array(np.round(vestR*scaleData), dtype=dataType)
     vestL = np.array(np.round(vestL*scaleData), dtype=dataType)
-    # wav.write(outputFileName, fs, \
-    #           np.array([vestR,vestL]).T)
+    wav.write(outputFileName, fs, \
+              np.array([vestR,vestL]).T)
     
     hatMR = (np.dot(np.dot(WM,betaR ** 2),HM)) / hatSXR * XR
     
@@ -1003,13 +1003,13 @@ def main(inputAudioFile,song_name,to_email_id):
     ###########################################
     # DATABASE UPDATE HERE#####################
     #conn = sqlite3.connect('db.sqlite3')
-    sql_dir = os.path.join(BASE_DIR, 'Project/db.sqlite3')
-    conn = sqlite3.connect(sql_dir)
-    c = conn.cursor()
-    email_song = (to_email_id + song_name,)
-    c.execute('UPDATE core_songDB SET karaoke_created = 1 WHERE full_name = ?', email_song)
-    conn.commit()
-    conn.close() 
+    #sql_dir = os.path.join(BASE_DIR, 'Project/db.sqlite3')
+    #conn = sqlite3.connect(sql_dir)
+    #c = conn.cursor()
+    #email_song = (to_email_id + song_name,)
+    #c.execute('UPDATE core_songDB SET karaoke_created = 1 WHERE full_name = ?', email_song)
+    #conn.commit()
+    #conn.close() 
 
 
     if displayEvolution:

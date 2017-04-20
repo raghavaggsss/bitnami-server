@@ -3,4 +3,3 @@ numpy 1.11.0
 aubio
 scipy
 matplotlib
-pydub, dependency on ffmpeg(for Ubuntu 14.04+, sudo apt-get install ffmpeg, for Ubuntu14.04, follow:https://www.faqforge.com/linux/how-to-install-ffmpeg-on-ubuntu-14-04/ 
