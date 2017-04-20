@@ -2,41 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1e8b1edd-ea02-4d6e-bc2c-e57092957ae7" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/compare.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/static/core/images/black_denim1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db.sqlite" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/freq_plot.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/imageMatlab.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/karaokeThreading.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/karaoke/a@ashewillbe20original.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/karaoke/m@mshewillbe20original.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/karaoke/r@rshewillbe20original.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/karaoke/raghavag@iitk.ac.inshewillbe20original.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/karaoke/zacefron.efron727@gmail.comshewillbe20original.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/png/a@ashewillbe20original.wav.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/png/m@mshewillbe20original.wav.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/png/r@rshewillbe20original.wav.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/png/raghavag@iitk.ac.inshewillbe20original.wav.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/png/zacefron.efron727@gmail.comshewillbe20original.wav.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/songs/lbandlish@gmail.cm05 - Ek Villain - Hamdard(DjGol.com)" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/score.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/core/js/script.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/media/songs/wf0__minF0-100_maxF0-800_Fs-44100_Nfft-2048_stepNotes-20_Ot-0.25_perF0-1_depthChirp-0.15_analysisWindow-sinebell.npz" afterPath="$PROJECT_DIR$/media/songs/wf0__minF0-100_maxF0-800_Fs-44100_Nfft-2048_stepNotes-20_Ot-0.25_perF0-1_depthChirp-0.15_analysisWindow-sinebell.npz" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/settings.py" afterPath="$PROJECT_DIR$/Project/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/templates/base.html" afterPath="$PROJECT_DIR$/Project/templates/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/urls.py" afterPath="$PROJECT_DIR$/Project/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/migrations/0001_initial.py" afterPath="$PROJECT_DIR$/core/migrations/0001_initial.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/models.py" afterPath="$PROJECT_DIR$/core/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/static/core/bootstrap.min.css" afterPath="$PROJECT_DIR$/core/static/core/bootstrap.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/static/core/js/bootstrap.min.js" afterPath="$PROJECT_DIR$/core/static/core/js/bootstrap.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/static/core/js/jquery.min.js" afterPath="$PROJECT_DIR$/core/static/core/js/jquery.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/static/core/style.css" afterPath="$PROJECT_DIR$/core/static/core/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/views.py" afterPath="$PROJECT_DIR$/core/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/generate.py" afterPath="$PROJECT_DIR$/generate.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/separateLeadStereoParam.py" afterPath="$PROJECT_DIR$/separateLeadStereoParam.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/core/style.css" afterPath="$PROJECT_DIR$/static/core/style.css" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/karaoke/f@fsochta.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/karaoke/g@gsochta.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/karaoke/s@ssochta.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/recordings/useless.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/songs/b@bafreen.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/songs/c@cafreen2.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/songs/d@dsochta.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/songs/f@fsochta.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/songs/g@gsochta.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/songs/s@ssochta.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/songs/wf0__minF0-100_maxF0-800_Fs-44100_Nfft-2048_stepNotes-20_Ot-0.25_perF0-1_depthChirp-0.15_analysisWindow-sinebell.npz" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/songs/wf0__minF0-100_maxF0-800_Fs-48000_Nfft-2048_stepNotes-20_Ot-0.25_perF0-1_depthChirp-0.15_analysisWindow-sinebell.npz" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/vocals/g@gsochta.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/vocals/useless" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/media/karaoke/nouse.txt" afterPath="$PROJECT_DIR$/media/karaoke/nouse.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
